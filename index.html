@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>CROSSXLABS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<style>
+  :root {
+    --main-purple: #7c4dff;
+    --dark-purple: #471cac;
+    --light-purple: #c9b6ff;
+    --white: #faf8ff;
+    --gradient-header: linear-gradient(90deg, #7c4dff, #ab6be8 80%);
+    --panel-gradient1: linear-gradient(100deg, #7c4dff 0%, #471cac 100%);
+    --panel-gradient2: linear-gradient(120deg, #6146be 0%, #a49fe8 83%, #7c4dff 100%);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%; margin: 0; padding: 0;
+    background: #332875;
+    color: var(--white);
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 68px;
+    background: var(--gradient-header);
+    display: flex;
+    padding: 0 3vw;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 16px rgba(124, 77, 255, 0.3);
+    z-index: 100;
+    backdrop-filter: blur(7px);
+  }
+  .logo {
+    font-family: 'Orbitron', monospace, Arial, sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    background: linear-gradient(90deg, #fff 15%, var(--light-purple) 60%, var(--main-purple) 95%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 5px #b09bf6cc);
+    user-select: none;
+    white-space: nowrap;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  nav a {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+    padding: 4px 3px;
+    letter-spacing: 0.04em;
+    border-radius: 4px;
+  }
+  nav a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2.5px;
+    background: var(--gradient-header);
+    border-radius: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  nav a:hover,
+  nav a:focus {
+    color: var(--light-purple);
+  }
+  nav a:hover::after,
+  nav a:focus::after {
+    transform: scaleX(1);
+  }
+  nav a:active {
+    color: var(--main-purple);
+  }
+
+  @media (max-width: 700px) {
+    header {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 1rem 2vw;
+    }
+    .logo {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    nav {
+      width: 100%;
+      justify-content: center;
+      gap: 1.4rem;
+      order: 2;
+    }
+  }
+
+  /* MAIN */
+  main {
+    padding-top: 68px;
+    height: 100vh;
+    width: 100vw;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    font-size: 16px;
+    background: var(--panel-gradient1);
+  }
+  section.panel {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  section.panel:nth-child(even) {
+    background: var(--panel-gradient2);
+  }
+  .panel-inner {
+    max-width: 680px;
+    min-width: 320px;
+    margin: 0 3.5vw;
+    background: rgba(255,255,255,0.09);
+    padding: 3em 2.5em;
+    border-radius: 26px;
+    box-shadow: 0 6px 35px 1px rgba(139 108 238 / 0.30);
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(60px) scale(0.96);
+    transition: opacity 0.8s cubic-bezier(0.22,1,0.29,1), transform 0.8s cubic-bezier(0.42,1,0.36,1);
+  }
+  section.panel.visible .panel-inner {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* alternating left/right panel */
+  section.panel:nth-child(odd) .panel-inner {
+    flex-direction: row;
+  }
+  section.panel:nth-child(even) .panel-inner {
+    flex-direction: row-reverse;
+  }
+
+  @media (max-width: 780px) {
+    .panel-inner {
+      flex-direction: column !important;
+      max-width: none !important;
+      padding: 2em 1rem;
+    }
+  }
+
+  /* Hero Welcome Panel */
+  #welcome .panel-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 5em 2em 6em;
+    background: transparent;
+    box-shadow: none;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  #welcome .hero-headline {
+    font-family: 'Orbitron', monospace, Arial, sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 6vw, 3.3rem);
+    letter-spacing: 0.12em;
+    color: var(--white);
+    line-height: 1.1;
+    background: linear-gradient(90deg, var(--white), var(--light-purple), var(--main-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom:1em;
+    animation: heroHeadline 1.3s ease forwards;
+  }
+  @keyframes heroHeadline {
+    0% { opacity: 0; transform: translateY(45px) scale(0.9);}
+    100% { opacity: 1; transform: translateY(0) scale(1);}
+  }
+  #welcome .hero-description {
+    font-size: clamp(1rem, 3vw, 1.28rem);
+    max-width: 28rem;
+    margin: 0 auto;
+    color: #ddd8ffcc;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1.7;
+    animation: heroDescription 1.3s ease 0.5s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  @keyframes heroDescription {
+    0% { opacity: 0; transform: translateY(20px);}
+    100% { opacity: 1; transform: translateY(0);}
+  }
+
+  /* Panel Titles / Description */
+  .panel-title {
+    font-family: 'Orbitron', monospace, Arial, sans-serif;
+    font-weight: 900;
+    font-size: 1.85rem;
+    margin: 0 0 0.7rem 0;
+    color: var(--white);
+  }
+  .panel-desc {
+    font-size: 1rem;
+    margin: 0 0 1.8em 0;
+    color: #d3c9ffdd;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+  .panel-desc strong { color: var(--light-purple);}
+  .panel-desc em { color: var(--main-purple); font-style: normal;}
+  
+  /* Panel actions (icons) */
+  .panel-actions {
+    display: flex;
+    gap: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .panel-actions a {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255 255 255 / 15%);
+    box-shadow: 0 2px 12px #ae91ff22;
+    color: var(--white);
+    font-size: 1.35rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border: 2.5px solid #ae91ff;
+    transition: all 0.26s ease;
+  }
+  .panel-actions a.github-icon { border-color: #5f47db; }
+  .panel-actions a.link-icon { border-color: #bc65e8; }
+  .panel-actions a:hover, .panel-actions a:focus {
+    background: var(--gradient-header);
+    box-shadow: 0 0 26px #ae91ffbb;
+    transform: scale(1.11) rotate(-8deg);
+    color: #fff;
+    outline: none;
+  }
+
+  /* Mockups */
+  .mockup {
+    max-width: 332px;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: var(--main-purple);
+    box-shadow: 0 0 35px #ab6be82e;
+    aspect-ratio: 1.72 / 1;
+  }
+  .mockup img {
+    width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+  }
+  section.panel:nth-child(odd) .mockup { margin-right: 2.7rem; order: 2;}
+  section.panel:nth-child(even) .mockup { margin-left: 2.7rem; order: 1;}
+  @media (max-width: 780px) {
+    .mockup { margin: 0 auto 1.7em !important; order: 0 !important;}
+  }
+
+  /* Soon box */
+  .soon-box {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.35rem;
+    background: rgba(124, 77, 255, 0.12);
+    color: var(--white);
+    border-radius: 12px;
+    padding: 2.3rem 1.4rem;
+    max-width: 420px;
+    border: 2px solid #ae91ff55;
+    text-align: center;
+  }
+
+  /* Community */
+  .community-title {
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+    letter-spacing: 0.06em;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  .cta-btn {
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    background: var(--gradient-header);
+    color: var(--white);
+    border: none;
+    box-shadow: 0 1px 7px #ab6bfccc;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.23s ease;
+  }
+  .cta-btn:hover,
+  .cta-btn:focus {
+    box-shadow: 0 0 30px #ae91ffee;
+    filter: brightness(1.09);
+    transform: scale(1.03);
+    outline: none;
+  }
+
+  /* Scroll arrow */
+  #scroll-arrow {
+    position: fixed;
+    left: 50%;
+    bottom: 36px;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 56px;
+    background: var(--gradient-header);
+    border-radius: 50%;
+    box-shadow: 0 0 18px #ae91ff40;
+    cursor: pointer;
+    border: none;
+    z-index: 200;
+    transition: opacity 0.3s ease;
+    outline: none;
+  }
+  #scroll-arrow svg {
+    width: 27px;
+    height: 27px;
+    stroke: #fff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+  #scroll-arrow.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Footer sign */
+  .footer-sign {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 0.9rem;
+    background: rgba(124, 77, 255, 0.87);
+    color: var(--white);
+    padding: 3.8px 11.5px 3.8px 11.5px;
+    border-radius: 12px 27px 27px 12px;
+    box-shadow: 0 3px 10px #ae91ff30;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.55s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 300;
+    user-select: none;
+  }
+  .footer-sign.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .footer-sign .heart {
+    color: #ff4d6d;
+    font-size: 1.1em;
+    animation: heartPulse 1.1s infinite alternate ease-in-out;
+    user-select: none;
+  }
+  @keyframes heartPulse {
+    0% { transform: scale(1);}
+    100% { transform: scale(1.25);}
+  }
+</style>
+</head>
+<body>
+<header>
+  <span class="logo">CROSSXLABS</span>
+  <nav>
+    <a href="#spicyblocker">SpicyBlocker</a>
+    <a href="#webtracker">WebTracker</a>
+    <a href="#programs">Programs</a>
+    <a href="#community">Community</a>
+  </nav>
+</header>
+
+<button id="scroll-arrow" aria-label="Scroll down">
+  <svg viewBox="0 0 48 48">
+    <polyline points="12,20 24,32 36,20"></polyline>
+  </svg>
+</button>
+
+<div class="footer-sign" id="footer-sign">
+  Made with <span class="heart">❤️</span> by CrossXLabs
+</div>
+
+<main>
+  <section class="panel odd" id="welcome">
+    <div class="panel-inner">
+      <h1 class="hero-headline">Innovation.<br>Security.<br>CROSSXLABS<br>Where Ideas turn into code.</h1>
+      <div class="hero-description">
+        <span>CROSSXLABS crafts sleek and powerful browser extensions and programs and productivity tools.</span>
+        <br />
+        <span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel even" id="spicyblocker">
+    <div class="panel-inner">
+      <div>
+        <h2 class="panel-title">SpicyBlocker</h2>
+        <p class="panel-desc">
+          Block adult content and <strong>protect your workspace</strong>.<br />
+          Clean, focused & distraction-free browsing.
+        </p>
+        <div class="panel-actions">
+          <a class="github-icon" href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub repository">
+            <i class="fab fa-github"></i>
+          </a>
+          <a class="link-icon" href="/spicyblocker" target="_blank" rel="noopener" aria-label="SpicyBlocker page">
+            <i class="fas fa-link"></i>
+          </a>
+        </div>
+      </div>
+      <div class="mockup">
+        <img src="https://i.imgur.com/L8BQm3X.png" alt="SpicyBlocker Preview" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="panel odd" id="webtracker">
+    <div class="panel-inner">
+      <div>
+        <h2 class="panel-title">WebTracker</h2>
+        <p class="panel-desc">
+          <em>Visualize your habits.</em><br />
+          Track your activity, understand your patterns, and take control.
+        </p>
+        <div class="panel-actions">
+          <a class="github-icon" href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub repository">
+            <i class="fab fa-github"></i>
+          </a>
+          <a class="link-icon" href="/webtracker" target="_blank" rel="noopener" aria-label="WebTracker page">
+            <i class="fas fa-link"></i>
+          </a>
+        </div>
+      </div>
+      <div class="mockup">
+        <img src="https://i.imgur.com/sD6Ig6U.png" alt="WebTracker Preview" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="panel even" id="programs">
+    <div class="panel-inner soon-box">
+      <strong>Programs</strong><br />Coming Soon…
+    </div>
+  </section>
+
+  <section class="panel odd" id="community">
+    <div class="panel-inner">
+      <div class="community-title">Join Our Community</div>
+      <div class="cta-buttons">
+        <a href="https://discord.gg/68rmQUuePC" target="_blank" class="cta-btn" aria-label="Join Discord">
+          <i class="fab fa-discord"></i> Discord
+        </a>
+        <a href="https://app.revolt.chat/invite/eFCRnjwE" target="_blank" class="cta-btn" aria-label="Join Revolt">
+          <i class="fas fa-comment-alt"></i> Revolt
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Animate panels on scroll
+  const panels = document.querySelectorAll('.panel');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.18 });
+  panels.forEach(panel => observer.observe(panel));
+
+  // Alternate orientation added in CSS with nth-child
+
+  // Scroll button - scroll on click to next panel
+  const arrow = document.getElementById('scroll-arrow');
+  arrow.onclick = () => {
+    let vp = window.innerHeight;
+    let currIdx = Array.from(panels).findIndex(panel => {
+      let r = panel.getBoundingClientRect();
+      return r.top < vp * 0.65 && r.bottom > vp * 0.2;
+    });
+    if (currIdx >= 0 && currIdx < panels.length - 1) {
+      panels[currIdx + 1].scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Toggle arrow and footer footer-sign visibility on last panel
+  const footerSign = document.getElementById('footer-sign');
+  function handleFooterAndArrow() {
+    const last = panels[panels.length - 1];
+    const rect = last.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.58) {
+      arrow.classList.add('hide');
+      footerSign.classList.add('show');
+    } else {
+      arrow.classList.remove('hide');
+      footerSign.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll', handleFooterAndArrow, { passive: true });
+  window.addEventListener('resize', handleFooterAndArrow);
+  document.addEventListener('DOMContentLoaded', handleFooterAndArrow);
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
