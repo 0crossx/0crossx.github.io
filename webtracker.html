@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebTracker – Crossxlabs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --main-purple: #7c4dff;
+      --dark-purple: #471cac;
+      --light-purple: #c9b6ff;
+      --white: #faf8ff;
+      --gradient-header: linear-gradient(90deg, #7c4dff, #ab6be8 80%);
+      --gradient-panel: linear-gradient(100deg, #7c4dff 0%, #471cac 100%);
+    }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background: var(--gradient-panel);
+      color: var(--white);
+      font-family: 'Space Grotesk', Arial, sans-serif;
+    }
+    /* HEADER */
+    header {
+      width: 100vw;
+      height: 68px;
+      background: var(--gradient-header);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3vw;
+      box-shadow: 0 2px 16px rgba(124, 77, 255, 0.19);
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 100;
+      backdrop-filter: blur(7px);
+    }
+    .logo {
+      font-family: 'Orbitron', monospace, Arial, sans-serif;
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      background: linear-gradient(90deg, #fff 15%, var(--light-purple) 60%, var(--main-purple) 95%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 6px #b09bf6cc);
+      user-select: none;
+      white-space: nowrap;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    nav a {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--white);
+      text-decoration: none;
+      padding: 4px 3px;
+      letter-spacing: 0.03em;
+      border-radius: 4px;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      background: var(--gradient-header);
+      height: 2.5px;
+      border-radius: 3px;
+      position: absolute;
+      bottom: 0;
+      left: 0; right: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+      display: block;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: var(--light-purple);
+    }
+    nav a:hover::after,
+    nav a:focus::after {
+      transform: scaleX(1);
+    }
+    @media (max-width: 700px) {
+      header { flex-wrap: wrap; height: auto; padding: 1rem 2vw;}
+      .logo { font-size: 1.1rem;}
+      nav { gap: 1rem; width: 100%; justify-content: center;}
+    }
+    /* HERO */
+    .hero {
+      padding-top: 105px;
+      width: 100%;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2.5em auto;
+    }
+    .hero-title {
+      font-size: 2.2rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--white) 10%, var(--light-purple) 80%, var(--main-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.44em;
+      letter-spacing: 0.12em;
+      animation: fadeInUp 1.2s cubic-bezier(.2,1,.52,1.11) both;
+    }
+    .hero-desc {
+      max-width: 470px;
+      margin: 0 auto;
+      font-size: 1.23rem;
+      color: #ece6fb;
+      font-weight: 600;
+      line-height: 1.6;
+      letter-spacing: .03em;
+      opacity: 0;
+      animation: fadeInUp 1.2s .45s both;
+    }
+    .hero-demo {
+      margin: 2em auto 1.5em auto;
+      max-width: 350px;
+      border-radius: 18px;
+      box-shadow: 0 0 40px #ae91ff39, 0 0 24px #bc65e822;
+      background: #6848aa;
+      overflow: hidden;
+      aspect-ratio: 1.7/1;
+      animation: fadeInUp 1.5s .9s both;
+      opacity: 0;
+    }
+    .hero-demo img {
+      width: 100%; display: block; border-radius: 18px;
+      user-select: none;
+    }
+    @keyframes fadeInUp {
+       0% {opacity:0; transform:translateY(45px) scale(0.96);}
+      100% {opacity:1; transform:translateY(0) scale(1);}
+    }
+    /* FEATURE SECTION */
+    .features {
+      max-width: 700px;
+      margin: 0 auto 2.5em auto;
+      background: rgba(255,255,255,0.08);
+      border-radius: 20px;
+      box-shadow: 0 2px 24px #7c4dff11;
+      padding: 2em 1.5em;
+    }
+    .features h2 {
+      font-size: 1.3rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-weight: 800;
+      color: var(--light-purple);
+      margin-top: 0;
+    }
+    .feature-list {
+      margin: 1.1em 0 0 0; padding: 0; list-style: none;
+      color: #f6f3fe;
+      font-size: 1.04rem;
+      line-height: 1.9;
+    }
+    .feature-list li::before {
+      content: '• ';
+      color: var(--main-purple);
+      font-weight: bold;
+    }
+    /* Demo links */
+    .panel-actions {
+      display: flex; gap: 1.2rem; justify-content: center; margin:2.1em 0 0 0;
+    }
+    .panel-actions a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255 255 255 / 11%);
+      color: var(--white);
+      font-size: 1.35rem;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      border: 2.5px solid #ae91ff;
+      transition: all .21s;
+    }
+    .panel-actions a.github-icon { border-color: #5f47db; }
+    .panel-actions a.link-icon { border-color: #bc65e8; }
+    .panel-actions a:hover, .panel-actions a:focus {
+      background: var(--gradient-header);
+      box-shadow: 0 0 20px #ae91ff99;
+      transform: scale(1.13) rotate(-7deg);
+      color: #fff;
+      outline: none;
+    }
+    /* Footer sign */
+    .footer-sign {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      font-family: 'Space Grotesk', Arial, sans-serif;
+      font-size: 0.92rem;
+      background: rgba(124, 77, 255, 0.87);
+      color: #fff;
+      padding: 3.8px 11.5px;
+      border-radius: 12px 13px 14px 12px;
+      box-shadow: 0 3px 10px #ae91ff30;
+      opacity: 0.92;
+      z-index: 300;
+      user-select: none;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .footer-sign .heart {
+      color: #ff4d6d;text-shadow:0 0 6px #fff2;
+      animation: heartPulse 1.07s infinite alternate cubic-bezier(.75,-0.5,.56,1.5);
+      font-size: 1.19em;
+      user-select: none;
+    }
+    @keyframes heartPulse {
+      from { transform: scale(1);}
+      to { transform: scale(1.18);}
+    }
+    /* Utility mobile */
+    @media (max-width: 500px) {
+      .hero { padding: 96px 5vw 2em 5vw;}
+      .features { padding:1em .6em;}
+      .footer-sign { font-size:.85rem; right:5px; left:auto;}
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="logo">CROSSXLABS</span>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/spicyblocker.html">SpicyBlocker</a>
+    <a href="/webtracker.html">WebTracker</a>
+    <a href="/programs.html">Programs</a>
+  </nav>
+</header>
+
+<section class="hero" aria-labelledby="heroTitle">
+  <h1 class="hero-title" id="heroTitle">WebTracker Extension</h1>
+  <div class="hero-desc">
+    Visualize your browsing.<br>
+    <span>WebTracker helps you understand and improve your habits, offering insights for laser-focused, productive days.</span>
+  </div>
+  <div class="hero-demo">
+    <img src="https://i.imgur.com/sD6Ig6U.png" alt="WebTracker Demo Preview" />
+  </div>
+  <div class="panel-actions">
+    <a class="github-icon" href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a class="link-icon" href="/webtracker.html" aria-label="WebTracker Info Page">
+      <i class="fas fa-link"></i>
+    </a>
+  </div>
+</section>
+
+<section class="features">
+  <h2>Features</h2>
+  <ul class="feature-list">
+    <li>Intuitive visual dashboards</li>
+    <li>Daily & weekly usage analytics</li>
+    <li>Set custom focus goals</li>
+    <li>Private & secure: your data stays yours</li>
+    <li>Seamless integration with your browser</li>
+  </ul>
+</section>
+
+<div class="footer-sign">
+  Made with <span class="heart">❤️</span> by CrossXLabs
+</div>
+
+<!-- Font Awesome for icons (required) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
