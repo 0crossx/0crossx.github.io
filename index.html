@@ -366,7 +366,7 @@
 
   <section id="contact" class="section-gap">
     <div class="section-title">Contact & Feedback</div>
-    <form class="contact-form" data-aos="flip-up" id="contactForm" method="POST" action="https://formsubmit.co/YOUR@EMAIL.com">
+    <form class="contact-form" data-aos="flip-up" id="contactForm" method="POST" action="iamamit2official@gmail.com">
       <h3>Quick Message</h3>
       <div class="form-row">
         <input class="form-input name-input" name="name" type="text" placeholder="Your Name" required autocomplete="name">
@@ -412,5 +412,231 @@
         });
       });
   </script>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CROSSXLABS – Tools | Changelog & Report Issue</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='16' fill='%237c4dff'/%3E%3Cpath d='M18 18L46 46M46 18L18 46' stroke='white' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@800&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(120deg,#22103b 0%,#16012c 100%);
+      color: #f8fafc;
+      font-family: 'Inter', 'Sora', sans-serif;
+      min-height: 100vh; margin:0;padding:0;
+    }
+    .btn, .btn.secondary {
+      font-family:'Sora',sans-serif;font-weight:800;
+      display:inline-block; padding:.68em 2.1em; border-radius:2em; border:none;
+      background: linear-gradient(96deg,#b388ff,#7c4dff 80%);
+      color:#fff; font-size:1.13em; text-decoration:none;outline:none;
+      cursor:pointer; box-shadow:0 2px 17px #ae66f754;
+      transition:filter .18s,box-shadow .19s;
+    }
+    .btn.secondary {background: linear-gradient(98deg,#f06eae,#30c5e0);}
+    .btn:hover, .btn.secondary:hover {filter:brightness(1.12);}
+    /* Floating triggers */
+    .floating-btn {
+      position:fixed;
+      right:20px;
+      border-radius:50%;
+      width:58px;height:58px;
+      font-size:2.1rem;
+      bottom: 28px;
+      display:flex;align-items:center;justify-content:center;
+      z-index:9192;
+      background:linear-gradient(95deg,#b388ff 40%,#7c4dff 80%);
+      box-shadow:0 4px 18px #7c4dff47;
+      color: #fff;
+      border:none;
+      outline:none;
+      cursor:pointer;
+      transition:filter .15s,box-shadow .14s,transform .13s;
+      margin-bottom:12px;
+    }
+    .floating-btn.secondary {bottom: 95px;background:linear-gradient(97deg,#f06eae,#30c5e0);}
+    .floating-btn:hover {filter:brightness(1.14);}
+    /* Modal overlay */
+    .modal-overlay {
+      display:none; position:fixed; z-index:99999; top:0; left:0; width:100vw; height:100vh;
+      background:rgba(24,0,48,0.74); backdrop-filter:blur(4px);
+      align-items:center; justify-content:center;
+    }
+    .modal-content {
+      background:rgba(41,22,90,.96);
+      border-radius:18px;
+      box-shadow:0 2px 40px #7c4dff38;
+      max-width:450px;
+      width:96vw;
+      padding:2.2em 1.7em 2em 1.7em;
+      color:#faf8ff;
+      position:relative;
+      font-family:'Sora',sans-serif;
+    }
+    .close-modal {
+      position:absolute;
+      top:14px;right:18px;
+      font-size:1.37em;
+      border:none;
+      background:none;
+      color:#b388ff;
+      cursor:pointer;
+      outline:none;
+      font-weight:bold;
+      transition:color .18s;
+    }
+    .close-modal:hover {color:#fff;}
+    .modal-header {
+      font-size:1.18em;
+      font-weight:800;
+      margin-bottom:.7em;
+      background:linear-gradient(97deg,#b388ff,#30c5e0);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .modal-subtitle {
+      color:#b388ff;
+      font-size:.99em;
+      margin-bottom:1.3em;
+    }
+    .modal-list {
+      padding-left:1.13em;
+      margin-bottom:1.7em;
+    }
+    .modal-list li {margin-bottom:.74em;}
+    .modal-link {
+      color:#7c4dff;text-decoration:underline;
+      font-size:.96em;
+    }
+    .changelog-badge {
+      display:inline-block;
+      margin-left:.7em;
+      font-size:.73em;
+      background:#30c5e0;
+      padding:.09em .7em;
+      border-radius:.8em;
+      color:#fff;
+      box-shadow:0 2px 10px #30c5e093;
+      vertical-align: middle;
+      font-weight: 700;
+      margin-right:.1em;
+    }
+    /* Issue Form */
+    .issue-form input, .issue-form textarea {
+      width:100%;padding:.88em .92em; margin-bottom:1em; border-radius:13px; border:none;
+      font-size:1em; background:#241b3c; color:#fff; outline:none;
+      font-family:'Inter',sans-serif;
+    }
+    .issue-form textarea {resize:vertical;}
+    .issue-form label {font-size:.95em;color:#c6b7fd;margin-bottom:.39em;display:block;}
+    .issue-form .btn {width:100%;}
+    .issue-status {margin-top:.89em;font-size:.98em;color:#b388ff;}
+    @media(max-width:400px){.modal-content{padding:1.1em .5em;}}
+  </style>
+</head>
+<body>
+  <!-- Changelog floating button -->
+  <button id="changelogBtn" class="floating-btn secondary" aria-label="Show changelog" title="See what's new!">
+    <i class="fa fa-bolt"></i>
+  </button>
+
+  <!-- Report issue floating button -->
+  <button id="issueReportBtn" class="floating-btn" aria-label="Report an issue" title="Report a problem or suggestion">
+    <i class="fa fa-bug"></i>
+  </button>
+
+  <!-- Changelog Modal -->
+  <div id="changelogModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="changelogHeader">
+    <div class="modal-content">
+      <button class="close-modal" id="closeChangelog" aria-label="Close">&times;</button>
+      <div class="modal-header" id="changelogHeader">
+        CROSSXLABS Update Log <span class="changelog-badge">New!</span>
+      </div>
+      <div class="modal-subtitle">v1.9.0 — July 2025</div>
+      <ul class="modal-list">
+        <li><b>New:</b> <span style="color:#30c5e0;">In-app Changelog</span> — never miss new features!</li>
+        <li><b>Improved:</b> Stats &amp; insights engine faster</li>
+        <li><b>Fixed:</b> Issue reporting now supports screenshots</li>
+        <li>UI polish and accessibility boost</li>
+      </ul>
+      <div style="margin-top:1.4em;font-size:.96em;">
+        <a class="modal-link" href="https://github.com/0crossx" target="_blank">Full release notes on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue Reporting Modal -->
+  <div id="issueModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="issueHeader">
+    <div class="modal-content">
+      <button class="close-modal" id="closeIssueReport" aria-label="Close">&times;</button>
+      <form id="issueForm" method="POST"
+        action="https://formsubmit.co/YOUR@EMAIL.com" class="issue-form" autocomplete="off">
+        <div class="modal-header" id="issueHeader">
+          Report an Issue / Suggestion
+        </div>
+        <input name="title" placeholder="Short Description" required maxlength="80">
+        <textarea name="desc" placeholder="Details (what, where, steps to reproduce...)" rows="4" required></textarea>
+        <label>
+          <input type="checkbox" name="consent" required>
+           I agree my report can be used to improve CROSSXLABS.
+        </label>
+        <button type="submit" class="btn secondary">Send Report</button>
+        <div id="issueStatus" class="issue-status"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+  <script>
+    // Changelog modal logic
+    const changelogBtn = document.getElementById('changelogBtn');
+    const changelogModal = document.getElementById('changelogModal');
+    const closeChangelog = document.getElementById('closeChangelog');
+    changelogBtn.onclick = () => { changelogModal.style.display = 'flex'; };
+    closeChangelog.onclick = () => { changelogModal.style.display = 'none'; };
+    changelogModal.addEventListener('click',e=>{
+      if(e.target===changelogModal){changelogModal.style.display='none';}
+    });
+
+    // Issue reporting modal logic
+    const issueBtn = document.getElementById('issueReportBtn');
+    const issueModal = document.getElementById('issueModal');
+    const closeIssue = document.getElementById('closeIssueReport');
+    issueBtn.onclick = () => { issueModal.style.display = 'flex'; };
+    closeIssue.onclick = () => { issueModal.style.display = 'none'; };
+    issueModal.addEventListener('click',e=>{
+      if(e.target===issueModal){issueModal.style.display='none';}
+    });
+
+    // ESC closes modals
+    window.addEventListener('keydown',function(e){
+      if(e.key==="Escape"){
+        changelogModal.style.display='none';
+        issueModal.style.display='none';
+      }
+    });
+
+    // Issue form works (replace with your FormSubmit.co or endpoint email!)
+    document.getElementById('issueForm').onsubmit = function(e) {
+      e.preventDefault();
+      var st = document.getElementById('issueStatus');
+      st.textContent = "Sending...";
+      fetch(this.action, {
+        method: "POST",
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      }).then(()=>{
+        st.textContent="Thank you! Your report was submitted.";
+        this.reset();
+      }).catch(()=>{
+        st.textContent="There was an error. Try again!";
+      });
+    };
+  </script>
+</body>
+</html>
+
 </body>
 </html>
