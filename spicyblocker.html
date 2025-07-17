@@ -3,122 +3,223 @@
 <head>
   <meta charset="UTF-8">
   <title>SpicyBlocker — The #1 Distraction Blocker for the Modern Web</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <!-- Favicon: Purple Shield Emoji SVG -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon: Purple Shield -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%237c4dff' d='M32 10l20 7.5v11c0 13.5-8.7 23.6-20 25.5C20.7 52.1 12 41.9 12 28.5v-11L32 10z'/%3E%3Cpath d='M32 56.6c-12.7-2.3-21-13.3-21-28.1v-12a2 2 0 011.2-1.8l20-7.5a2 2 0 011.6 0l20 7.5a2 2 0 011.2 1.8v12c0 14.9-8.3 25.9-21 28.1a2 2 0 01-.4 0zm-19-27.9C13 41.2 21.1 51 32 53.2c10.9-2.2 19-12 19-24.5v-11l-19-7.1-19 7.1v11z' fill='white'/%3E%3C/svg%3E">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@800&family=Orbitron:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
-    :root {
-      --accent: #b388ff;
-      --accent2: #7c4dff;
-      --blue: #30c5e0;
-      --pink: #f06eae;
-      --surface: #282146;
-      --glass: rgba(67,25,107,0.14);
-      --footerbg: rgba(38,19,72,0.70);
-      --white: #f8fafc;
-      --radius: 27px;
-      --gapY: 3.7em;
-      --gapY-mobile: 1.6em;
-      --hero-icon-shield: url('data:image/svg+xml,<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path fill="%237c4dff" d="M32 10l20 7.5v11c0 13.5-8.7 23.6-20 25.5C20.7 52.1 12 41.9 12 28.5v-11L32 10z"/><path d="M32 56.6c-12.7-2.3-21-13.3-21-28.1v-12a2 2 0 011.2-1.8l20-7.5a2 2 0 011.6 0l20 7.5a2 2 0 011.2 1.8v12c0 14.9-8.3 25.9-21 28.1a2 2 0 01-.4 0zm-19-27.9C13 41.2 21.1 51 32 53.2c10.9-2.2 19-12 19-24.5v-11l-19-7.1-19 7.1v11z" fill="white"/></svg>');
-    }
-    html,body {margin:0;padding:0;font-family:'Inter',sans-serif;min-height:100vh;width:100vw;background:linear-gradient(120deg,#22103b 0%,#16012c 100%);color:var(--white);overflow-x:hidden;font-size:1.045rem;}
-    header {
-      position:fixed;top:0;left:0;width:100vw;z-index:1001;background:rgba(38,13,72,0.34);box-shadow:0 9px 32px #7c4dff17;
-      backdrop-filter:blur(10px);display:flex;align-items:center;
-    }
-    .header-inner {width:100vw;max-width:1340px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2.7vw;height:68px;}
-    .logo {
-      font-family:'Orbitron',sans-serif;letter-spacing:.14em;font-weight:900;
-      font-size:2.13rem;background:linear-gradient(83deg,#fff 10%,#bc8bff 40%,#7c4dff 97%);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;
-      text-shadow:0 2px 18px #ae99ff1a;user-select:none;
-      filter:drop-shadow(0 0 10px #9974e187);
-      margin-right:.5em;text-decoration:none;
-    }
-    nav.nav {display:flex;gap:2.1em;align-items:center;font-family:'Sora',sans-serif;}
-    nav.nav a {color:var(--white);text-decoration:none;position:relative;font-size:1.11rem;font-weight:600;padding:2px 3px 4px 3px;}
-    nav.nav a.active,nav.nav a:hover {color:var(--blue);}
-    .nav-btn{background:linear-gradient(105deg,#b388ff,#7c4dff 78%);color:#fff;font-family:'Sora',sans-serif;font-weight:700;border-radius:18px;border:none;font-size:1.13rem;padding:.68em 1.61em;letter-spacing:.08em}
-    .nav-btn:hover{filter:brightness(1.11);}
-    .section-gap { margin-top:var(--gapY);margin-bottom:var(--gapY);}
-    @media (max-width:700px) {.section-gap {margin-top:var(--gapY-mobile);margin-bottom:var(--gapY-mobile);}.header-inner{padding:0 1vw;}}
-    .hero-centerfit{min-height:60vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding-top:78px;}
-    .hero-content{width:100vw;max-width:780px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;}
-    .hero-spicyblocker-icon{
-      width:82px;height:82px;display:inline-block;margin-bottom:1em;
-      background:var(--hero-icon-shield) center/contain no-repeat;
-      filter: drop-shadow(0 0 34px #7c4dff93);
-      border-radius:18px;
-      animation:pop-shield 1.6s cubic-bezier(.48,.88,.42,1) both;
-    }
-    @keyframes pop-shield{0%{opacity:0;transform:scale(.6);}80%{opacity:1;transform:scale(1.13);}100%{opacity:1;transform:scale(1);}}
-    .hero-content h1{font-family:'Sora',sans-serif;font-weight:900;font-size:clamp(2.1rem,7vw,3.2rem);margin-bottom:.49rem;
-      background:linear-gradient(96deg,#fff 30%,#b388ff 68%,#7c4dff 99%);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;color:transparent;letter-spacing:0.09em;animation:fadeUp .85s .1s both;}
-    .hero-content .herotagline{font-family:'Sora',sans-serif;font-size:1.24rem;color:#d5c2fe;margin-bottom:1.8rem;line-height:1.62;}
-    .hero-content .btn-group{display:flex;gap:1.3rem;justify-content:center;}
-    .btn,.btn.secondary{font-family: 'Sora',sans-serif;font-size:1.11rem;
-        padding:.81em 2em;border-radius:2em;border:none;color:#fff;font-weight:700;cursor:pointer;
-        box-shadow:0 2px 17px #ae66f754;outline:none;transition:filter .17s,box-shadow .16s;}
-    .btn.secondary{background:linear-gradient(99deg,#f06eae,#30c5e0);}
-    .btn{background:linear-gradient(106deg,#b388ff,#7c4dff 66%);}
-    .btn:active{transform:scale(0.98);}
-    .btn:hover{filter:brightness(1.10);}
-    .section-title {font-family:'Sora',sans-serif;font-weight:900;font-size:2.23rem;margin:0 auto 1.15rem auto;background:linear-gradient(96deg,#b388ff 17%,#7c4dff 68%,#30c5e0 98%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:transparent;text-align:center;animation:fadeUp .8s;}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(45px) scale(0.93);}to{opacity:1;transform:none;}}
-    .features-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(295px,1fr));gap:2.5em;margin:2.6em auto 0 auto;max-width:1050px;width:95vw;}
-    .feature-card{background:rgba(48,28,86,0.72);border-radius:21px;padding:2.13em 1em 2.89em 1em;box-shadow:0 3px 18px #9f73fc15;display:flex;flex-direction:column;align-items:center;gap:.6em;border:none;backdrop-filter:blur(1.8px);transition:box-shadow .21s,transform .13s;position:relative;min-height:230px;}
-    .feature-card:hover{transform:translateY(-7px) scale(1.04);box-shadow:0 7px 29px #7c4dff33;}
-    .feature-icon{font-size:2.45em;margin-bottom:.09em;}
-    .feature-title{font-family:'Sora',sans-serif;font-size:1.13em;font-weight:800;letter-spacing:.08em;background:linear-gradient(97deg,#b388ff 18%,#30c5e0 77%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .feature-desc{font-family:'Inter',sans-serif;font-size:1.04em;color:#ece2ffdf;line-height:1.47;margin-bottom:.49em;text-align:center;}
-    .tool-links{position:absolute;bottom:1em;right:1.1em;display:flex;gap:.71em;}
-    .tool-link-btn{
-      width:40px;height:40px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;
-      font-size:1.33em;background:rgba(170,150,255,0.09);color:var(--white);box-shadow:0 2px 13px #ae66f730;cursor:pointer;border:2.5px solid #b388ff33;
-      transition:transform .13s,box-shadow .12s,background .12s;margin-left:.07em;text-decoration:none;}
-    .tool-link-btn.github {border-color:#3549c7;}
-    .tool-link-btn.github:hover {background:linear-gradient(98deg,#24293a,#5865F2);}
-    .tool-link-btn.internal:hover {background:linear-gradient(86deg,#42e3c5,#7c4dff);}
-    .tool-link-btn:focus {outline:2px solid var(--accent);}
-    .settings-demo-panel{
-      margin:2.7em auto 0 auto;background:rgba(41,24,82,0.68);border-radius:19px;box-shadow:0 4px 33px #7c4dff16;
-      padding:2em 1.5em 1em 1.5em;max-width:430px;display:flex;flex-direction:column;align-items:center;
-      border:1.5px solid #31106138;
-    }
-    .settings-demo-options{width:100%;display:flex;flex-direction:column;gap:1em;}
-    .settings-demo-option{background:rgba(70,44,110,.88);border-radius:13px;padding:.85em 1em .7em 1em;display:flex;align-items:center;gap:1em;}
-    .settings-demo-option .opt-toggle{margin-left:auto;}
-    .settings-demo-option label{font-family:'Sora',sans-serif;color:#f8fafc;font-size:1em;font-weight:700;}
-    .opt-toggle{width:47px;height:26px;background:#382374;border-radius:13px;position:relative;display:inline-block;cursor:pointer;}
-    .opt-toggle input{opacity:0;width:0;height:0;}
-    .opt-slider{position:absolute;top:2px;left:2px;width:23px;height:22px;background:var(--accent2);border-radius:11px;transition:.18s;}
-    .opt-toggle input:checked + .opt-slider{background:var(--blue);left:22px;}
-    .faqs{margin:2.5em auto 0 auto;max-width:535px;}
-    .faq{background:rgba(44,30,73,0.73);border-radius:15px;padding:0 1.2em 0 1.2em;margin-bottom:.8em;border:1px solid #7c4dff28;box-shadow:0 2px 15px #816fff09;}
-    .faq-q{font-size:1.08rem;font-family:'Sora',sans-serif;font-weight:bold;margin:.95em 0 .48em 0;cursor:pointer;display:flex;align-items:center;}
-    .faq-q i{margin-right:.6em;transition:transform .2s;}
-    .faq.open .faq-q i{transform:rotate(90deg);}
-    .faq-a{font-family:'Inter',sans-serif;font-size:1.01rem;line-height:1.55;max-height:0;overflow:hidden;transition:max-height .22s cubic-bezier(.53,.05,.44,1.34);padding:0 0;}
-    .faq.open .faq-a{max-height:280px;padding-bottom:.9em;}
-    .contact-form{margin:0 auto 2.6em auto;max-width:555px;padding:2.8em 2.3em 2.2em 2.3em;background:rgba(60,34,101,0.79);border-radius:21px;box-shadow:0 4px 40px #b988ff18;display:flex;flex-direction:column;gap:0.9em;align-items:center;border:1.5px solid #31106126;font-family:'Inter',sans-serif;}
-    .contact-form h3{margin-bottom:1em;font-size:1.39em;font-family:'Sora',sans-serif;color:#b388ff;font-weight:800;letter-spacing:.09em;text-align:center;}
-    .form-row{width:100%;}
-    .form-input,.form-textarea{width:100%;min-width:0;max-width:100%;padding:1.09em 1.23em;font-size:1.1em;border-radius:14px;margin-bottom:1em;border:none;background:#22163e;color:#fff;outline:none;transition:box-shadow .12s;font-family:'Inter',sans-serif;box-shadow:0 2px 10px #29105a13;resize:none;box-sizing: border-box;}
-    .form-input.name-input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden;}
-    .form-input:focus,.form-textarea:focus{box-shadow:0 0 0 2px #b388ff;}
-    .form-submit{margin-top:.69em;}
-    .form-status{text-align:center;font-size:1.17em;margin-top:.7em;margin-bottom:-.1em;}
-    footer{background:var(--footerbg);margin:3.4em auto 0 auto;color:#b0a0ff; font-family:'JetBrains Mono',monospace;border-top:1.5px solid #7c4dff28;border-radius:14px 14px 0 0;box-shadow:0 0 14px #a58fff24;padding:1.3em 2vw .6em 2vw;text-align:center;font-size:1.09rem;max-width:700px;display:flex;flex-direction:column;align-items:center;gap:.23em;letter-spacing:.04em;position:relative;}
-    .footer-heart{color:#f06eae;font-size:1.23em;animation:heartBeat 1.18s infinite alternate;vertical-align:middle;}
-    .footer-brand {font-family:'Orbitron',sans-serif;color:#7c4dff;font-size:1.23em;display:inline-block;text-shadow:0 2px 14px #b388ff59;background:linear-gradient(75deg,#bc8bff 10%,#fff 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;margin:0 5px;animation:footerBrandPulse 3.5s infinite alternate;}
-    @keyframes footerBrandPulse {90%{filter:brightness(1.11) drop-shadow(0 0 14px #7c4dff5a);}100%{filter:brightness(1.14) drop-shadow(0 0 24px #c6afff74);}}
-    @keyframes heartBeat{to{transform:scale(1.15);}}
-    @media (max-width: 600px){.features-grid{gap:1.3em;}.feature-card{min-height:205px;}.settings-demo-panel{padding:1.2em .5em;}}
+  :root {
+    --accent: #b388ff;
+    --accent2: #7c4dff;
+    --blue: #30c5e0;
+    --pink: #f06eae;
+    --surface: #282146;
+    --glass: rgba(67,25,107,0.14);
+    --footerbg: rgba(38,19,72,0.70);
+    --white: #f8fafc;
+    --radius: 27px;
+    --gapY: 3.2em;
+    --gapY-mobile: 1.4em;
+    --hero-icon-shield: url('data:image/svg+xml,<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path fill="%237c4dff" d="M32 10l20 7.5v11c0 13.5-8.7 23.6-20 25.5C20.7 52.1 12 41.9 12 28.5v-11L32 10z"/><path d="M32 56.6c-12.7-2.3-21-13.3-21-28.1v-12a2 2 0 011.2-1.8l20-7.5a2 2 0 011.6 0l20 7.5a2 2 0 011.2 1.8v12c0 14.9-8.3 25.9-21 28.1a2 2 0 01-.4 0zm-19-27.9C13 41.2 21.1 51 32 53.2c10.9-2.2 19-12 19-24.5v-11l-19-7.1-19 7.1v11z" fill="white"/></svg>');
+  }
+  html,body {
+    margin:0;padding:0;font-family:'Inter',sans-serif;min-height:100vh;width:100vw;
+    background:radial-gradient(circle at 50% 0,#22103b 10%,#7c4dff16 45%,#16012c 100%);
+    color:var(--white);overflow-x:hidden;font-size:1.045rem;
+  }
+  header {position:fixed;top:0;left:0;width:100vw;z-index:1001;background:rgba(38,13,72,0.34);box-shadow:0 9px 32px #7c4dff17;backdrop-filter:blur(10px);display:flex;align-items:center;}
+  .header-inner {width:100vw;max-width:1340px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2.7vw;height:68px;}
+  .logo {
+    font-family:'Orbitron',sans-serif;letter-spacing:.14em;font-weight:900;
+    font-size:2.13rem;background:linear-gradient(83deg,#fff 10%,#bc8bff 40%,#7c4dff 97%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;text-shadow:0 2px 18px #ae99ff1a;user-select:none;filter:drop-shadow(0 0 10px #9974e187);margin-right:.5em;text-decoration:none;
+  }
+  nav.nav {display:flex;gap:2.1em;align-items:center;font-family:'Sora',sans-serif;}
+  nav.nav a {color:var(--white);text-decoration:none;position:relative;font-size:1.11rem;font-weight:600;padding:2px 3px 4px 3px;}
+  nav.nav a.active,nav.nav a:hover {color:var(--blue);}
+  .section-gap { margin-top:var(--gapY);margin-bottom:var(--gapY);}
+  @media (max-width:700px){.section-gap{margin-top:var(--gapY-mobile);margin-bottom:var(--gapY-mobile);}.header-inner{padding:0 1vw;}}
+  /* HERO */
+  .hero-centerfit{min-height:60vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding-top:78px;}
+  .hero-content{width:100vw;max-width:800px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;}
+  .hero-spicyblocker-icon{
+    width:88px;height:88px;display:inline-block;margin-bottom:1em;
+    background:var(--hero-icon-shield) center/contain no-repeat;
+    filter: drop-shadow(0 0 34px #7c4dff93);
+    border-radius:18px;
+    animation:pop-shield 1.7s cubic-bezier(.48,.88,.42,1) both;
+  }
+  @keyframes pop-shield{0%{opacity:0;transform:scale(.6);}80%{opacity:1;transform:scale(1.13);}100%{opacity:1;transform:scale(1);}}
+  .hero-content h1{font-family:'Sora',sans-serif;font-weight:900;font-size:clamp(2.1rem,7vw,3.15rem);margin-bottom:.49rem;background:linear-gradient(96deg,#fff 30%,#b388ff 68%,#7c4dff 99%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:transparent;letter-spacing:.09em;animation:fadeUp .85s .1s both;}
+  .hero-content .herotagline{font-family:'Sora',sans-serif;font-size:1.27rem;color:#d5c2fe;margin-bottom:1.8rem;line-height:1.56;}
+  .hero-content .btn-group{display:flex;gap:1.33rem;justify-content:center;flex-wrap:wrap;}
+  .btn, .btn.secondary{
+    font-family: 'Sora',sans-serif;font-size:1.13rem; padding:.8em 2.15em; border-radius:2em; border:none;color:#fff;font-weight:700;cursor:pointer;box-shadow:0 2px 17px #ae66f754;outline:none;transition:filter .17s,box-shadow .16s;margin-top:.19em;margin-bottom:.19em;
+  }
+  .btn.secondary{background:linear-gradient(99deg,#f06eae,#30c5e0);}
+  .btn{background:linear-gradient(106deg,#b388ff,#7c4dff 66%);}
+  .btn:active{transform:scale(0.98);}
+  .btn:hover{filter:brightness(1.10);}
+  /* --- Section Headings --- */
+  .section-title {font-family:'Sora',sans-serif;font-weight:900;font-size:2.23rem;margin:0 auto 1.13rem auto;background:linear-gradient(96deg,#b388ff 18%,#7c4dff 68%,#30c5e0 98%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;color:transparent;text-align:center;animation:fadeUp .8s;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(45px) scale(0.93);}to{opacity:1;transform:none;}}
+  /* Features grid */
+  .features-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(295px,1fr));gap:2.1em;margin:2.45em auto 0 auto;max-width:980px;width:95vw;}
+  .feature-card{background:rgba(48,28,86,0.81);border-radius:21px;padding:2.09em .97em 2.5em .97em;box-shadow:0 5px 26px #9f73fc17;display:flex;flex-direction:column;align-items:center;gap:.7em;border:none;backdrop-filter:blur(2.6px);transition:box-shadow .19s,transform .13s;position:relative;min-height:220px;}
+  .feature-card:hover{transform:translateY(-7px) scale(1.04);box-shadow:0 8px 30px #7c4dff39;}
+  .feature-icon{font-size:2.7em;margin-bottom:.02em;}
+  .feature-title{font-family:'Sora',sans-serif;font-size:1.18em;font-weight:800;letter-spacing:.08em;background:linear-gradient(97deg,#b388ff 18%,#30c5e0 77%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .feature-desc{font-family:'Inter',sans-serif;font-size:1.03em;color:#ece2ffdf;line-height:1.47;text-align:center;}
+  .tool-links{position:absolute;bottom:1.05em;right:1em;display:flex;gap:.71em;}
+  .tool-link-btn{
+    width:40px;height:40px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;
+    font-size:1.33em;background:rgba(170,150,255,0.09);color:var(--white);box-shadow:0 2px 13px #ae66f730;cursor:pointer;border:2.5px solid #b388ff33;
+    transition:transform .13s,box-shadow .12s,background .12s;margin-left:.07em;text-decoration:none;}
+  .tool-link-btn.github {border-color:#3549c7;}
+  .tool-link-btn.github:hover {background:linear-gradient(98deg,#24293a,#5865F2);}
+  .tool-link-btn:focus {outline:2px solid var(--accent);}
+  /* --- Glass settings demo --- */
+  .settings-demo-panel{
+    margin:2.7em auto 0 auto;background:rgba(41,24,82,0.68);border-radius:19px;box-shadow:0 4px 33px #7c4dff18;
+    padding:2em 1.5em 1em 1.5em;max-width:430px;display:flex;flex-direction:column;align-items:center;
+    border:1.5px solid #31106138;
+  }
+  .settings-demo-options{width:100%;display:flex;flex-direction:column;gap:1em;}
+  .settings-demo-option{background:rgba(70,44,110,.88);border-radius:13px;padding:.85em 1em .7em 1em;display:flex;align-items:center;gap:1em;}
+  .settings-demo-option .opt-toggle{margin-left:auto;}
+  .settings-demo-option label{font-family:'Sora',sans-serif;color:#f8fafc;font-size:1em;font-weight:700;}
+  .opt-toggle{width:47px;height:26px;background:#382374;border-radius:13px;position:relative;display:inline-block;cursor:pointer;}
+  .opt-toggle input{opacity:0;width:0;height:0;}
+  .opt-slider{position:absolute;top:2px;left:2px;width:23px;height:22px;background:var(--accent2);border-radius:11px;transition:.18s;}
+  .opt-toggle input:checked + .opt-slider{background:var(--blue);left:22px;}
+  /* --- FAQ Accordions --- */
+  .faqs{margin:2.5em auto 0 auto;max-width:535px;}
+  .faq{background:rgba(44,30,73,0.73);border-radius:15px;padding:0 1.2em 0 1.2em;margin-bottom:.79em;border:1px solid #7c4dff28;box-shadow:0 2.5px 15px #816fff09;}
+  .faq-q{font-size:1.09rem;font-family:'Sora',sans-serif;font-weight:bold;margin:.95em 0 .48em 0;cursor:pointer;display:flex;align-items:center;}
+  .faq-q i{margin-right:.6em;transition:transform .2s;}
+  .faq.open .faq-q i{transform:rotate(90deg);}
+  .faq-a{font-family:'Inter',sans-serif;font-size:1.01rem;line-height:1.55;max-height:0;overflow:hidden;transition:max-height .22s cubic-bezier(.53,.05,.44,1.34);padding:0 0;}
+  .faq.open .faq-a{max-height:280px;padding-bottom:.9em;}
+  /* --- Comparison Table --- */
+  .compare-warning {
+    background: linear-gradient(96deg, #71223d 15%, #442554 100%);
+    color: #fff; border-radius: 13px;
+    box-shadow: 0 2px 20px #a81e3c50;
+    padding: 1.39em 1.4em 1.04em 3.6em; margin-bottom: 1.6em; position: relative; font-size:1.13em; line-height:1.55;
+  }
+  .compare-warning span[style*="font-size: 2em"] {position:absolute; left:1.15em; top:1.3em;font-size:2.05em;}
+  .compare-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    font-family: 'Sora', sans-serif;
+    box-shadow: 0 4px 24px #a984ff2a;
+    background:rgba(34,19,66,0.94);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .compare-table thead th {
+    background: linear-gradient(95deg, #b388ff 22%, #7c4dff 85%);
+    color: #fff;
+    font-weight: 800;
+    padding: 1.04em .65em .82em .7em;
+    font-size: 1.045em;
+    border-bottom: 3px solid #7c4dff;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    letter-spacing: .04em;
+    text-align: center;
+    border-right:1.7px solid #3e2672ae;
+  }
+  .compare-table th:last-child,
+  .compare-table td:last-child { border-right: none; }
+  .compare-table th, .compare-table td {
+    border-right: 1.7px solid #3e2672ae;
+    border-bottom: 1.7px solid #3e267255;
+    padding: .92em .5em .74em .8em;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .compare-table tbody tr:nth-child(even) {
+    background: linear-gradient(97deg,#2e176332 0%,#1c133a3a 90%);
+  }
+  .compare-table tbody tr:nth-child(odd) {
+    background:rgba(43,29,73,0.76);
+  }
+  .compare-table th:first-child,
+  .compare-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    color: #a3a2fe;
+    border-left: none;
+    background:rgba(36,29,65,0.8);
+    position: sticky;
+    left:0;
+    z-index: 1;
+  }
+  .compare-table td.yes {
+    color: #38e68f;
+    font-weight: 800;
+    background:rgba(56,230,143,0.035);
+  }
+  .compare-table td.no {
+    color: #ff3e87;
+    font-weight: 700;
+    background:rgba(251,38,184,0.027);
+  }
+  .compare-table td.planned {
+    color: #ffe363;
+    font-weight: 800;
+    font-style: italic;
+    background:rgba(255,227,99,0.032);
+  }
+  .compare-table td.notyet {
+    color: #fed54c;
+    font-weight:700;
+    font-style:italic;
+    background:rgba(250,204,43,0.07);
+  }
+  .compare-table td.warning {
+    color: #ffdb3c;
+    font-weight:900;
+    background:rgba(217,31,93,0.12);
+    border-left: 3.5px solid #e64980;
+  }
+  .compare-table td.mid {
+    color: #ffe371;
+    font-weight: 700;
+    background:rgba(253,236,187,0.11);
+  }
+  .compare-table .table-note {
+    color: #b388ff;
+    font-size: .86em;
+    opacity:.85;
+    font-weight: 600;
+  }
+  /* Explainer */
+  .trust-explainer{
+    max-width:720px;margin:2em auto 0 auto;background:rgba(80,19,62,0.15);border-radius:11px;box-shadow:0 0 14px #a3085a2a; padding:1.2em 1.3em .8em 1.6em;font-size:1.04em;color:#ffe4fa;
+  }
+  @media (max-width:700px){
+    .feature-card{min-height:185px;padding:1.4em .5em 2.1em .5em;}
+    .features-grid{gap:1.03em;}
+    .settings-demo-panel{padding:1.1em .28em;}
+    ..compare-warning{padding:1.1em .7em .87em 2.8em;}
+    .compare-table th, .compare-table td {font-size:.98em;padding:.76em .18em .7em .29em;}
+    .compare-table th:first-child,
+    .compare-table td:first-child {font-size:.99em;}
+  }
+  /* --- Footer --- */
+  footer{
+    background:var(--footerbg);margin:3.3em auto 0 auto;color:#b0a0ff;font-family:'JetBrains Mono',monospace;border-top:1.5px solid #7c4dff28;border-radius:14px 14px 0 0;box-shadow:0 0 14px #a58fff24;padding:1.2em 2vw .65em 2vw;text-align:center;font-size:1.09rem;max-width:700px;display:flex;flex-direction:column;align-items:center;gap:.23em;letter-spacing:.04em;position:relative;
+  }
+  .footer-heart{color:#f06eae;font-size:1.23em;animation:heartBeat 1.18s infinite alternate;vertical-align:middle;}
+  .footer-brand{font-family:'Orbitron',sans-serif;color:#7c4dff;font-size:1.23em;display:inline-block;text-shadow:0 2px 14px #b388ff59;background:linear-gradient(75deg,#bc8bff 10%,#fff 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;margin:0 5px;animation:footerBrandPulse 3.5s infinite alternate;}
+  @keyframes footerBrandPulse {90%{filter:brightness(1.11) drop-shadow(0 0 14px #7c4dff5a);}100%{filter:brightness(1.14) drop-shadow(0 0 24px #c6afff74);}}
+  @keyframes heartBeat{to{transform:scale(1.15);}}
   </style>
 </head>
 <body>
@@ -147,7 +248,7 @@
         <a class="btn secondary" href="https://addons.mozilla.org/firefox/addon/spicyblocker/" target="_blank" rel="noopener">
           <i class="fab fa-firefox-browser"></i> Install for Firefox
         </a>
-        <a class="btn" href="https://github.com/yourusername/spicyblocker" target="_blank" rel="noopener">
+        <a class="btn" href="https://github.com/0crossx/spicyblocker" target="_blank" rel="noopener">
           <i class="fab fa-github"></i> View on GitHub
         </a>
         <a class="btn" style="background:linear-gradient(96deg,#1877f2,#6ba7f9);" href="https://microsoftedge.microsoft.com/addons/detail/spicyblocker/yourid" target="_blank" rel="noopener">
@@ -160,31 +261,31 @@
   <section id="features" class="features-section section-gap">
     <div class="section-title">What Makes SpicyBlocker Different?</div>
     <div class="features-grid">
+      <!-- WEBSITE REDIRECT -->
       <div class="feature-card">
         <div class="feature-icon">↪️</div>
         <div class="feature-title">Website Redirect</div>
         <div class="feature-desc">
-          Redirect distracting or blocked pages to a safe page or a motivation message of your choice.
+          Instantly redirect distracting or blocked pages to a safe landing or motivational screen. No error pages or confusion.
         </div>
-        <!-- No links for this feature -->
       </div>
+      <!-- MAJORITY NSFW BLOCKED -->
       <div class="feature-card">
         <div class="feature-icon">🌐</div>
         <div class="feature-title">Majority NSFW Blocked</div>
         <div class="feature-desc">
-          New sites are detected & blocked daily—with broad coverage of all major distraction/NSFW domains. No more surprises!
+          New sites detected and blocked daily—covering all major distraction/NSFW domains. Stay protected, automatically.
         </div>
         <div class="tool-links">
-          <a class="tool-link-btn github" aria-label="Block Coverage" target="_blank" href="https://github.com/yourusername/spicyblocker-nsfwlist">
+          <a class="tool-link-btn github" aria-label="Block Coverage" target="_blank" href="https://github.com/0crossx/spicyblocker-nsfwlist">
             <i class="fab fa-github"></i>
-          </a>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SETTINGS DEMO (unchanged, kept to show users settings style/UX) -->
+  <!-- SETTINGS DEMO -->
   <section id="settings-demo" class="section-gap">
     <div class="section-title">Settings Demo</div>
     <div class="settings-demo-panel">
@@ -219,9 +320,159 @@
         </div>
       </div>
       <div style="color:#b388ff;font-family:'Sora',sans-serif;font-size:1em;margin-top:1em;">
-        <i class="fa fa-cog fa-spin"></i>  
+        <i class="fa fa-cog fa-spin"></i>
         All features are 1-click in the real extension!
       </div>
+    </div>
+  </section>
+
+  <!-- BLOCKSITE WARNING CALLOUT -->
+  <div class="compare-warning">
+    <span>&#9888;&#65039;</span>
+    <b>Serious Privacy Warning:</b><br>
+    BlockSite collects a <strong>mind-boggling amount of user data</strong>. It has access to every web page you visit and the content on it. In 2018, BlockSite was banned from the Firefox store for being classified as spyware. Although it returned, as a proprietary extension with closed-source code, <b>there is no way to independently verify its privacy practices</b>. 
+    <span style="color: #ffe28e;">
+      <br>- <b>Data collected includes:</b> full browsing history, device identifiers, IP address, app usage data, and more.
+      <br>- BlockSite can share user data with unspecified third parties and uses it for ad targeting.
+    </span>
+    <br>
+    <a href="https://tipsforefficiency.com/is-blocksite-safe/" target="_blank" rel="noopener" style="color:#ffe680;text-decoration:underline;">Read an independent deep-dive on BlockSite’s privacy issues</a>
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <section class="section-gap" id="compare">
+    <div class="section-title">How SpicyBlocker Compares</div>
+    <div style="max-width:950px; margin:0 auto; background:rgba(41,24,82,0.56); border-radius:15px; box-shadow:0 2px 22px #7c4dff21; padding:2.3em 1em 2.1em 1em;">
+      <div style="font-size:1.16em; color:#b388ff; margin-bottom:1.15em; text-align:center;">
+        <b>SpicyBlocker</b> vs. Leading Site Blockers
+      </div>
+      <div style="font-size:.99em; color:#ffe4fa; text-align:center; margin-bottom:.93em;">
+        <b>Note:</b> SpicyBlocker is <b>not yet open source</b> but plans to be soon!
+      </div>
+      <div style="overflow-x:auto; padding-bottom:1em;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th style="color:#8763ff;">SpicyBlocker</th>
+              <th>BlockSite</th>
+              <th>StayFocusd</th>
+              <th>LeechBlock</th>
+              <th>Freedom</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Distraction/NSFW Site Blocking</td>
+              <td class="yes">Yes</td>
+              <td>Yes</td>
+              <td>Partially</td>
+              <td>Yes</td>
+              <td>Limited</td>
+            </tr>
+            <tr>
+              <td>Custom Blocklist</td>
+              <td class="yes">Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Website Redirect<br><small>(Custom Page)</small></td>
+              <td class="yes">Yes</td>
+              <td>Yes</td>
+              <td class="no">No</td>
+              <td>Yes</td>
+              <td class="no">No</td>
+            </tr>
+            <tr>
+              <td>Scheduling<br><small>(Work/Break Blocks)</small></td>
+              <td class="planned">Planned</td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Blocking Stats &amp; Insights</td>
+              <td class="yes">Yes</td>
+              <td>Some</td>
+              <td>Minimal</td>
+              <td>Minimal</td>
+              <td>Minimal</td>
+            </tr>
+            <tr>
+              <td>Multi-Profile/Parental Options</td>
+              <td class="planned">Planned</td>
+              <td>Yes</td>
+              <td class="no">No</td>
+              <td class="no">No</td>
+              <td class="no">No</td>
+            </tr>
+            <tr>
+              <td>Majority Adult/Nudity Blocked</td>
+              <td class="yes">Yes<br><span class="table-note">(Daily updated list)</span></td>
+              <td>Yes</td>
+              <td>Partial</td>
+              <td>Optional</td>
+              <td>Limited</td>
+            </tr>
+            <tr>
+              <td>Privacy-First<br><small>(No Data Sold/No Ads)</small></td>
+              <td class="yes">Yes<br><span class="table-note">(no data sharing)</span></td>
+              <td class="no">No</td>
+              <td class="yes">Yes</td>
+              <td class="yes">Yes</td>
+              <td class="no">No</td>
+            </tr>
+            <tr>
+              <td>Data Collection</td>
+              <td class="yes">Minimal<br><span class="table-note">(settings only, all local)</span></td>
+              <td class="warning" title="Collects extensive data, see warning above"><b>Extensive</b><br><span class="table-note">monitors all browsing</span></td>
+              <td class="yes">Minimal</td>
+              <td class="yes">Minimal</td>
+              <td class="mid">Moderate</td>
+            </tr>
+            <tr>
+              <td>Open Source / Open Audit</td>
+              <td class="notyet">No<br><span class="table-note">(planned)</span></td>
+              <td class="no">No</td>
+              <td class="no">No</td>
+              <td class="yes">Yes</td>
+              <td class="no">No</td>
+            </tr>
+            <tr>
+              <td>Browser Support<br><small>(Firefox, Edge)</small></td>
+              <td class="yes">Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Free Without Account</td>
+              <td class="yes">Yes</td>
+              <td>Limited</td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td class="no">No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="compare-us-summary" style="font-size:1em;color:#e1ccff;margin-top:1.6em;text-align:center;">
+        <b>Key Advantages:</b>
+        <span style="color:#38e68f;">Motivational redirects</span>,
+        <span style="color:#38e68f;">pure privacy-first</span>,
+        <span style="color:#38e68f;">aggressive NSFW coverage</span>.<br>
+        <span style="color:#ffe233;">Open source coming soon!</span>
+      </div>
+    </div>
+    <!-- Why trust matters -->
+    <div class="trust-explainer">
+      <b style="color:#e64980;">Why Transparency &amp; Privacy Matter</b><br>
+      Extensions that aren't open source and collect user data can change policies at any time, and users can't verify what they're really doing in the background. That’s why, even after returning to browser stores, <b>you should be skeptical of blockers with a history of privacy abuse</b>&mdash;and why SpicyBlocker’s roadmap is focused on transparency, privacy, and an open-source future.
     </div>
   </section>
 
@@ -235,7 +486,7 @@
       </div>
       <div class="faq">
         <div class="faq-q"><i class="fas fa-chevron-right"></i>How are NSFW sites detected so well?</div>
-        <div class="faq-a">We use community-powered lists and constant updates to stay ahead of *all* popular and new domains.</div>
+        <div class="faq-a">We use community-powered lists, AI-based pattern checks, and constant updates to stay ahead of *all* popular and new domains.</div>
       </div>
       <div class="faq">
         <div class="faq-q"><i class="fas fa-chevron-right"></i>How can I unblock a site I need for research?</div>
@@ -243,7 +494,7 @@
       </div>
       <div class="faq">
         <div class="faq-q"><i class="fas fa-chevron-right"></i>Is SpicyBlocker totally free?</div>
-        <div class="faq-a">100%! No hidden fees, no premium traps. Open source forever!</div>
+        <div class="faq-a">100%! No hidden fees, no premium traps. Open source forever (coming soon)!</div>
       </div>
     </div>
   </section>
@@ -252,31 +503,29 @@
     <span>
       <b>Made with <span class="footer-heart">❤️</span> by <span class="footer-brand">CROSSXLABS</span></b>
       <br>
-      © <span id="footer-year"></span> • SpicyBlocker is Free. <span style="color:#7c4dff;">Stay Focused. Stay Powerful.</span>
+      © <span id="footer-year"></span> • SpicyBlocker is Free & Planned Open Source. <span style="color:#7c4dff;">Stay Focused. Stay Powerful.</span>
     </span>
   </footer>
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-      AOS.init({ duration: 950, once: false, easing:'cubic-bezier(.42,1,.36,1)' });
-      document.getElementById('footer-year').textContent = new Date().getFullYear();
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-      // FAQ expand/collapse
-      document.querySelectorAll('.faq-q').forEach(q=>{
-        q.addEventListener('click', function() {
-          let par = q.closest('.faq');
-          par.classList.toggle('open');
-        });
-        q.addEventListener('keydown', function(e) {if(e.key==="Enter" || e.key===" "){e.preventDefault();q.click();}})
-        q.setAttribute("tabindex", "0");
-        q.setAttribute("role", "button");
-        q.setAttribute("aria-expanded", "false");
+    // FAQ expand/collapse
+    document.querySelectorAll('.faq-q').forEach(q=>{
+      q.addEventListener('click', function() {
+        let par = q.closest('.faq');
+        par.classList.toggle('open');
       });
-      document.querySelectorAll('.faq').forEach(faq => {
-        faq.addEventListener('transitionend', function() {
-          let q = faq.querySelector('.faq-q');
-          q.setAttribute("aria-expanded", faq.classList.contains('open') ? "true" : "false");
-        });
+      q.addEventListener('keydown', function(e) {if(e.key==="Enter" || e.key===" "){e.preventDefault();q.click();}})
+      q.setAttribute("tabindex", "0");
+      q.setAttribute("role", "button");
+      q.setAttribute("aria-expanded", "false");
+    });
+    document.querySelectorAll('.faq').forEach(faq => {
+      faq.addEventListener('transitionend', function() {
+        let q = faq.querySelector('.faq-q');
+        q.setAttribute("aria-expanded", faq.classList.contains('open') ? "true" : "false");
       });
+    });
   </script>
 </body>
 </html>
