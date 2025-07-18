@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,6 +147,15 @@
       .footer404{font-size:.97rem;}
     }
   </style>
+  <script>
+    // Pretty URL: Redirect /coolproject/@username to canonical profile URL
+    (function() {
+      const match = location.pathname.match(/^\/coolproject\/@([\w-]+)\/?$/i);
+      if (match) {
+        location.replace('/coolproject/user.html?username=' + encodeURIComponent(match[1]));
+      }
+    })();
+  </script>
 </head>
 <body>
   <div class="centered" role="main">
@@ -160,7 +170,6 @@
     If so, check back soon for new features and tools!
   </span>
 </div>
-
       <a class="go-home-btn" href="/">Go Home</a>
   </div>
   <footer class="footer404">
