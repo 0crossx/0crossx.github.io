@@ -1,71 +1,134 @@
-// js/auth.js
-
-// Import required functions from the Firebase Auth SDK
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
+// coolproject/js/auth.js
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut, 
   updateProfile,
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-// Optionally import Firestore for user profile info (uncomment if needed)
-// import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-// import { app } from './firebase-init.js'; // If you export app from firebase-init
+  GoogleAuthProvider,
+  signInWithPopup
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { db } from './firebase-init.js';
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const auth = getAuth();
-// const db = getFirestore(); // if needed
 
-// SIGN UP with email and password
-export async function signUp(email, password, username) {
+// 🌌 Cosmic Authentication Functions
+
+export const cosmicSignUp = async (email, password, username) => {
   try {
+    // 1. Create user in Firebase Auth
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    // Optionally update the user display name
-    if (username) {
-      await updateProfile(user, { displayName: username });
-    }
-    // Optionally, save user info to Firestore
-    // await setDoc(doc(db, "users", user.uid), {
-    //   email,
-    //   username,
-    //   createdAt: new Date()
-    // });
-    return user;
-  } catch (error) {
-    // Pass error object so caller can display error message
-    throw error;
-  }
-}
+    
+    // 2. Update profile with username
+    await updateProfile(userCredential.user, {
+      displayName: username
+    });
 
-// LOGIN with email and password
-export async function logIn(email, password) {
+    // 3. Create user document in Firestore
+    await setDoc(doc(db, "users", userCredential.user.uid), {
+      username,
+      email,
+      bio: "✨ New cosmic traveler",
+      avatar: generateCosmicAvatar(email),
+      links: [],
+      createdAt: new Date(),
+      stardust: 100 // Starting cosmic currency
+    });
+
+    return userCredential.user;
+
+  } catch (error) {
+    throw transformStellarError(error);
+  }
+};
+
+export const cosmicLogin = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     return userCredential.user;
   } catch (error) {
-    throw error;
+    throw transformStellarError(error);
   }
-}
+};
 
-// LOGOUT the current user
-export async function logOut() {
+export const googleSignIn = async () => {
+  try {
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    
+    // Check if user is new
+    if (result._tokenResponse.isNewUser) {
+      await setDoc(doc(db, "users", result.user.uid), {
+        username: result.user.displayName || result.user.email.split('@')[0],
+        email: result.user.email,
+        bio: "🌠 Google cosmic traveler",
+        avatar: result.user.photoURL || generateCosmicAvatar(result.user.email),
+        links: [],
+        createdAt: new Date(),
+        stardust: 150 // Bonus for Google users
+      });
+    }
+    
+    return result.user;
+  } catch (error) {
+    throw transformStellarError(error);
+  }
+};
+
+export const cosmicLogout = async () => {
   try {
     await signOut(auth);
   } catch (error) {
-    throw error;
+    throw transformStellarError(error);
   }
-}
+};
 
-// AUTH STATE: call a callback with the user or null on user state change
-export function onUserStateChange(callback) {
-  onAuthStateChanged(auth, (user) => {
+// 🌟 Helper Functions
+
+const generateCosmicAvatar = (seed) => {
+  // Generate deterministic cosmic avatar based on email
+  const colors = ['#b388ff', '#00e5ff', '#7c4dff', '#ff4d8d', '#00ffaa'];
+  const color = colors[Math.abs(hashCode(seed)) % colors.length];
+  return `https://api.dicebear.com/8.x/identicon/svg?seed=${seed}&backgroundColor=${color.substring(1)}`;
+};
+
+const hashCode = (str) => {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return hash;
+};
+
+const transformStellarError = (error) => {
+  const errorMap = {
+    'auth/email-already-in-use': 'This stardust address is already warping through the cosmos',
+    'auth/invalid-email': 'Invalid cosmic coordinates (email format)',
+    'auth/weak-password': 'Your quantum shield needs at least 6 particles',
+    'auth/user-not-found': 'No celestial being found with these coordinates',
+    'auth/wrong-password': 'Incorrect cosmic passphrase',
+    'auth/too-many-requests': 'The universe needs a break - try again later',
+    'auth/popup-closed-by-user': 'Portal closed before completion'
+  };
+
+  return {
+    code: error.code,
+    message: errorMap[error.code] || 'A cosmic disturbance occurred',
+    original: error
+  };
+};
+
+// 🛸 Real-time Auth State Listener
+export const onAuthStateChanged = (callback) => {
+  return auth.onAuthStateChanged((user) => {
+    if (user) {
+      // Add cosmic metadata to user object
+      user.cosmicData = {
+        avatar: generateCosmicAvatar(user.email),
+        stardust: 0 // Will be updated from Firestore
+      };
+    }
     callback(user);
   });
-}
-
-// Utility: Get current user (optional)
-export function getCurrentUser() {
-  return auth.currentUser;
-}
+};

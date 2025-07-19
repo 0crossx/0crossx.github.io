@@ -1,0 +1,59 @@
+/* coolproject/css/cosmicHelpers.css */
+@keyframes cosmicPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+@keyframes cosmicShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+
+.cosmic-loader {
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.stellar-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 25px;
+  border-radius: 50px;
+  font-weight: bold;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.stellar-notification.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(10px);
+}
+
+.stellar-notification.success {
+  background: rgba(0, 229, 255, 0.2);
+  border: 1px solid #00e5ff;
+  color: #00e5ff;
+}
+
+.stellar-notification.error {
+  background: rgba(255, 77, 141, 0.2);
+  border: 1px solid #ff4d8d;
+  color: #ff4d8d;
+}

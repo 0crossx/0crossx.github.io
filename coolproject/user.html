@@ -2,32 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>@username | CROSSXLABS Profile</title>
+  <title>@username | LinkGlow</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover the bio, links, and avatars of CROSSXLABS creators.">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    body{min-height:100vh;margin:0;padding:0;display:flex;justify-content:center;align-items:center;background:linear-gradient(120deg,#1b1530 45%,#13254a 90%);font-family:'Inter',sans-serif; color:#fff;}
-    .pub-profile-card{background:rgba(24,24,40,0.96);margin:2em 0;box-shadow:0 4px 40px #50e2fe26;max-width:380px;width:95vw;border-radius:1.4em;padding:2.3em 1.5em 1.9em 1.5em;display:flex;flex-direction:column;align-items:center;border:1.6px solid #50e2fe43;}
-    .pub-avatar{width:84px;height:84px;border-radius:32%;box-shadow:0 0 22px #50e2fe77;border:2px solid #4e21ff;background:#232f51;object-fit:cover;}
-    .pub-username{font-size:1.43rem;font-weight:900;color:#5fffd1;margin:.69em 0 .18em 0;background:linear-gradient(90deg,#fff 67%,#4e21ff 99%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .pub-bio{color:#baf8ff;font-size:1.09em;margin:0 0 1.2em 0;text-align:center;}
-    .pub-links-list{list-style:none;padding:0;width:100%;margin:0;}
-    .pub-link-item{background:linear-gradient(90deg, #212c47 10%, #2d4170 90%);border-radius:1.15em;box-shadow:0 3px 16px #5ef9e826;margin-bottom:1.1em;display:flex;align-items:center;transition:transform .09s,box-shadow .17s;}
-    .pub-link-item:last-child{margin-bottom:0;}
-    .pub-link-item:hover{transform:scale(1.025);}
-    .pub-link-btn{flex:1;display:block;font-size:1.05em;font-weight:700;color:#eefcff;background:none;border:none;cursor:pointer;text-align:left;padding:1.1em 1em;text-decoration:none;transition:color .18s;}
-    .pub-link-btn:hover{color:#f7ea70;text-shadow:0 1px 6px #5fffd1;}
-    .pub-link-icon{width:2.1em;height:2.1em;margin-left:.6em;margin-right:.9em;display:flex;align-items:center;justify-content:center;font-size:1.09em;border-radius:37%;background:#263254;}
-  </style>
 </head>
-<body>
-  <main class="pub-profile-card">
-    <img id="pubAvatar" class="pub-avatar" src="https://api.dicebear.com/8.x/identicon/svg?seed=LinkinBio" alt="User avatar"/>
-    <div class="pub-username" id="pubUsername">@username</div>
-    <div class="pub-bio" id="pubBio">Loading bio...</div>
-    <ul class="pub-links-list" id="pubLinks"></ul>
-  </main>
+<body class="profile-page">
+  <div class="bg-3d"></div>
+  <div class="profile-container">
+    <img id="userAvatar" class="glow-avatar">
+    <h1 id="username">@username</h1>
+    <p id="userBio"></p>
+    <ul id="userLinks"></ul>
+  </div>
   <script type="module" src="js/user-page.js"></script>
 </body>
 </html>

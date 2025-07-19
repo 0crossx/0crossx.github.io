@@ -1,58 +1,27 @@
-<!DOCTYPE html>
+]<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard | CROSSXLABS</title>
+  <title>Dashboard | LinkGlow</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    body{min-height:100vh;background:linear-gradient(120deg,#141924 60%,#122034 100%);display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;}
-    .dashboard-card{background:rgba(16,17,32,0.96);padding:3rem 2.2rem 2.5rem 2.2rem; border-radius:21px; box-shadow:0 14px 40px #50e2fe30,0 2px 8px #1e69de2c; display:flex;flex-direction:column;align-items:center;width:95vw;max-width:420px;}
-    .dashboard-header{font-size:2.11rem;font-weight:900;color:#4e21ff;background:linear-gradient(90deg,#fafafa 60%,#4e21ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5em;}
-    form{width:100%;}
-    .form-group{margin-bottom:.9rem;display:flex;flex-direction:column;}
-    .form-group label{color:#aef9fe;font-size:.99rem;margin-bottom:.22em;}
-    .form-group input,.form-group textarea{background:rgba(34,40,55,.93);color:#fff;font-size:1.05rem;border:1.3px solid #253771;border-radius:7px;padding:.62em;resize:vertical;}
-    .form-group input:focus,.form-group textarea:focus{border:1.3px solid #5fffd1;outline:none;}
-    .readonly{background:#232d46b2;color:#50e2fe;font-weight:700;border:none;}
-    .form-error{color:#fd7887;text-align:center;font-size:.98em;min-height:1.13em;margin:.25em 0;}
-    .dashboard-btn{background:linear-gradient(90deg,#50e2fe,#5fffd1);color:#181f2e;padding:.77em 0;font-size:1.13rem;font-weight:700;border:none;border-radius:7px;width:100%;margin:1.3em 0 0 0;cursor:pointer;}
-    .pub-url-box{margin-bottom:1em;margin-top:.8em;}
-    .pub-url-label{font-size:.99em;color:#5fffd1;font-weight:700;margin-bottom:.27em;}
-    .pub-url-input{background:#181f2e;color:#5ef9e8;border:none;border-radius:7px;width:100%;font-size:.95em;padding:.41em .7em;font-weight:600;}
-    .copy-btn{background:#4e21ff;color:#fff;font-weight:700;border:none;padding:.5em 1.23em;margin-left:.3em;border-radius:8px;font-size:.94em;cursor:pointer;}
-    .signout-btn{background:none;color:#fd7887;border:none;font-size:1em;font-weight:600;cursor:pointer;margin:1.9em auto 0 auto;display:block;}
-  </style>
 </head>
-<body>
-  <div class="dashboard-card">
-    <div class="dashboard-header">Edit Your Profile</div>
-    <form id="profileForm" autocomplete="off">
-      <div class="form-group">
-        <label for="profileUsernameEdit">Username (permanent)</label>
-        <input type="text" id="profileUsernameEdit" class="readonly" readonly disabled />
-      </div>
-      <div class="form-group">
-        <label for="profileBioEdit">Bio</label>
-        <textarea id="profileBioEdit" rows="2" maxlength="180"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="profileAvatar">Avatar URL</label>
-        <input type="url" id="profileAvatar" />
-      </div>
-      <div class="form-group">
-        <label for="profileLinks">Links (one per line)</label>
-        <textarea id="profileLinks" rows="4" placeholder="https://yourlink.com"></textarea>
-      </div>
-      <div id="profileError" class="form-error"></div>
-      <button type="submit" class="dashboard-btn">Save Changes</button>
+<body class="dashboard-page">
+  <div class="bg-3d"></div>
+  <div class="dashboard-container">
+    <h1>Craft Your Digital Aura</h1>
+    <form id="profileForm">
+      <input type="text" id="username" disabled>
+      <textarea id="bio" placeholder="Your radiant bio..."></textarea>
+      <input type="url" id="avatar" placeholder="Avatar URL">
+      <textarea id="links" placeholder="Your links, one per line"></textarea>
+      <button type="submit">Update Aura</button>
     </form>
-    <div class="pub-url-box">
-      <div class="pub-url-label">Your public link</div>
-      <input id="publicProfileUrl" class="pub-url-input" readonly>
-      <button id="copyProfileLink" class="copy-btn">Copy</button>
+    <div class="profile-url">
+      <input type="text" id="publicUrl" readonly>
+      <button id="copyUrl">Copy</button>
     </div>
-    <button id="signOutBtn" class="signout-btn">Sign Out</button>
+    <button id="logout">Extinguish</button>
   </div>
   <script type="module" src="js/dashboard.js"></script>
 </body>

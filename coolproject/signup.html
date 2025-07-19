@@ -1,48 +1,331 @@
+<!-- coolproject/signup.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign Up | CROSSXLABS</title>
+  <title>Join the Cosmos | LinkGlow</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
-  body { min-height:100vh;background:linear-gradient(120deg,#191e32 55%,#1a2e59 100%);display:flex;justify-content:center;align-items:center;font-family:'Inter',sans-serif; }
-  .auth-card { background:#181f2e;padding:2.5rem 2rem;border-radius:16px;box-shadow:0 6px 24px #1e69de22; max-width:340px;width:95%; }
-  h1 {font-size:2rem;margin-bottom:1.3rem;color:#50e2fe;text-align:center;}
-  .form-group{margin-bottom:1.1rem;}
-  .form-group label{color:#ccd9ff;font-size:.97rem;margin-bottom:.4rem;display:block;}
-  .form-group input{padding:.65em 1em;background:#212b46;border-radius:7px;border:1.3px solid #253771;color:#fff;font-size:1.04rem;width:100%;}
-  .form-group input:focus{border:1.3px solid #50e2fe;outline:none;}
-  .form-error{color:#fd7887;text-align:center;font-size:.99em;min-height:1.1em;}
-  .auth-btn{background:linear-gradient(90deg,#50e2fe,#5fffd1);color:#181f2e;padding:.8em 0;border:none;font-size:1.18rem;font-weight:700;border-radius:7px;width:100%;margin-top:0.3em;cursor:pointer;}
-  .auth-btn:disabled{opacity:0.7;}
-  .auth-bottom{text-align:center;margin-top:1.8rem;color:#88a;}
-  .auth-bottom a{color:#50e2fe; text-decoration:none;}
+    :root {
+      --void-black: #0a0a16;
+      --quantum-purple: #b388ff;
+      --pulsar-blue: #00e5ff;
+      --event-horizon: #7c4dff;
+      --supernova: #ff4d8d;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--void-black);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: 
+        radial-gradient(ellipse at top, rgba(123, 31, 162, 0.2) 0%, transparent 70%),
+        radial-gradient(ellipse at bottom, rgba(0, 229, 255, 0.1) 0%, transparent 70%),
+        linear-gradient(to bottom, #0a0a16 0%, #1a1a2e 100%);
+    }
+    
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle var(--duration) infinite ease-in-out;
+      opacity: var(--opacity);
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    
+    .signup-container {
+      max-width: 500px;
+      margin: 5rem auto;
+      padding: 3rem;
+      background: rgba(26, 26, 46, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(179, 136, 255, 0.2);
+      box-shadow: 0 0 40px rgba(179, 136, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .signup-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(179, 136, 255, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      z-index: -1;
+    }
+    
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .signup-header {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, var(--quantum-purple), var(--pulsar-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 2px;
+    }
+    
+    .input-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--pulsar-blue);
+    }
+    
+    .input-field {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(16, 16, 32, 0.8);
+      border: 1px solid rgba(179, 136, 255, 0.3);
+      border-radius: 10px;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .input-field:focus {
+      outline: none;
+      border-color: var(--quantum-purple);
+      box-shadow: 0 0 0 2px rgba(179, 136, 255, 0.3);
+    }
+    
+    .signup-button {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--quantum-purple), var(--event-horizon));
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 1px;
+      margin-top: 1rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .signup-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+      z-index: -1;
+    }
+    
+    .signup-button:hover::before {
+      left: 100%;
+    }
+    
+    .signup-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(179, 136, 255, 0.4);
+    }
+    
+    .signup-button:active {
+      transform: translateY(0);
+    }
+    
+    .login-link {
+      text-align: center;
+      margin-top: 2rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .login-link a {
+      color: var(--pulsar-blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+    
+    .error-message {
+      color: var(--supernova);
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: 600;
+      min-height: 1.5rem;
+    }
+    
+    /* Animated border effect */
+    @keyframes borderPulse {
+      0% { box-shadow: 0 0 0 0 rgba(179, 136, 255, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(179, 136, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(179, 136, 255, 0); }
+    }
+    
+    .signup-container {
+      animation: borderPulse 4s infinite;
+    }
   </style>
 </head>
 <body>
-  <div class="auth-card">
-    <h1>Create Account</h1>
-    <form id="signupForm" autocomplete="off">
-      <div class="form-group">
-        <label for="signupUsername">Choose a username</label>
-        <input type="text" id="signupUsername" maxlength="24" pattern="^[a-zA-Z0-9_-]+$" title="Letters, numbers, underscores or dashes only" required>
+  <!-- Animated Starfield Background -->
+  <div class="starfield" id="starfield"></div>
+  
+  <div class="signup-container">
+    <h1 class="signup-header">CREATE YOUR PORTAL</h1>
+    
+    <form id="signupForm">
+      <div class="input-group">
+        <label for="username">COSMIC HANDLE</label>
+        <input type="text" id="username" class="input-field" placeholder="Your universal identifier" required minlength="3" maxlength="20" pattern="[a-zA-Z0-9_]+">
       </div>
-      <div class="form-group">
-        <label for="signupEmail">Email</label>
-        <input type="email" id="signupEmail" required>
+      
+      <div class="input-group">
+        <label for="email">STARDUST ADDRESS</label>
+        <input type="email" id="email" class="input-field" placeholder="Your celestial email" required>
       </div>
-      <div class="form-group">
-        <label for="signupPassword">Password</label>
-        <input type="password" id="signupPassword" minlength="6" required>
+      
+      <div class="input-group">
+        <label for="password">QUANTUM CIPHER</label>
+        <input type="password" id="password" class="input-field" placeholder="Your secret constellation" required minlength="6">
       </div>
-      <div id="signupError" class="form-error"></div>
-      <button type="submit" class="auth-btn">Sign Up</button>
+      
+      <button type="submit" class="signup-button">ACTIVATE PORTAL</button>
+      
+      <div id="errorMessage" class="error-message"></div>
     </form>
-    <div class="auth-bottom">
-      Already joined? <a href="login.html">Sign In</a>
+    
+    <div class="login-link">
+      Already have a cosmic presence? <a href="login.html">Enter wormhole</a>
     </div>
   </div>
-  <script type="module" src="js/signup.js"></script>
+
+  <script type="module">
+    // Generate starfield
+    const starfield = document.getElementById('starfield');
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.width = `${Math.random() * 3 + 1}px`;
+      star.style.height = star.style.width;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.setProperty('--duration', `${Math.random() * 5 + 3}s`);
+      star.style.setProperty('--opacity', Math.random() * 0.5 + 0.1);
+      starfield.appendChild(star);
+    }
+
+    // Import Firebase auth functions
+    import { signUp } from './js/auth.js';
+    import { db } from './js/firebase-init.js';
+    import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // Form submission
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const errorElement = document.getElementById('errorMessage');
+      
+      // Clear previous errors
+      errorElement.textContent = '';
+      
+      try {
+        const userCredential = await signUp(email, password, username);
+        const user = userCredential.user;
+        
+        // Create user profile in Firestore
+        await setDoc(doc(db, "users", user.uid), {
+          username,
+          email,
+          bio: "",
+          avatar: "",
+          links: [],
+          createdAt: new Date()
+        });
+        
+        // Redirect to dashboard
+        window.location.href = 'dashboard.html';
+        
+      } catch (error) {
+        // Handle errors
+        let errorMessage = 'Cosmic disturbance! Try again.';
+        
+        switch(error.code) {
+          case 'auth/email-already-in-use':
+            errorMessage = 'Stardust address already registered';
+            break;
+          case 'auth/invalid-email':
+            errorMessage = 'Invalid stardust address';
+            break;
+          case 'auth/weak-password':
+            errorMessage = 'Quantum cipher too weak (min 6 characters)';
+            break;
+        }
+        
+        errorElement.textContent = errorMessage;
+        
+        // Add shake animation to form
+        const form = document.querySelector('.signup-container');
+        form.style.animation = 'none';
+        setTimeout(() => {
+          form.style.animation = 'borderPulse 4s infinite, shake 0.5s';
+        }, 10);
+        
+        // Remove shake animation after it completes
+        setTimeout(() => {
+          form.style.animation = 'borderPulse 4s infinite';
+        }, 500);
+      }
+    });
+
+    // Add shake animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%, 60% { transform: translateX(-5px); }
+        40%, 80% { transform: translateX(5px); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>
