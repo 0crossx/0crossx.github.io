@@ -1,3 +1,50 @@
+// Add at the top of dashboard.js
+const loadingIndicator = document.createElement('div');
+loadingIndicator.textContent = 'Loading...';
+loadingIndicator.style.textAlign = 'center';
+loadingIndicator.style.margin = '1em 0';
+
+// Modify the onAuthStateChanged callback
+onAuthStateChanged(auth, async user => {
+  if (!user) return location = "login.html";
+  
+  try {
+    // Show loading
+    errorDiv.appendChild(loadingIndicator);
+    
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+    
+    if (!docSnap.exists()) {
+      showError("Profile missing! Creating one...");
+      // Create a basic profile if it doesn't exist
+      await setDoc(docRef, {
+        username: user.displayName || user.email.split('@')[0],
+        bio: "",
+        avatar: "",
+        links: []
+      });
+      // Reload the data
+      const newSnap = await getDoc(docRef);
+      data = newSnap.data();
+    } else {
+      data = docSnap.data();
+    }
+    
+    // Populate fields
+    usernameInput.value = data.username || "";
+    bioInput.value = data.bio || "";
+    avatarInput.value = data.avatar || "";
+    linksInput.value = (data.links || []).join("\n");
+    fillUrl(data.username);
+    
+    // Remove loading
+    errorDiv.removeChild(loadingIndicator);
+  } catch (error) {
+    showError("Error loading profile: " + (error.message || "Try refreshing"));
+    console.error(error);
+  }
+});
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
